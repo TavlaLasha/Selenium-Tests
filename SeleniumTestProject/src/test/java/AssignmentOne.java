@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import static java.lang.Thread.sleep;
 
-public class SeleniumTest {
+public class AssignmentOne {
     public static void main(String[] args) throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -21,6 +21,7 @@ public class SeleniumTest {
         sleep(2000);
         BuyBasketItems(driver);
 
+        /*Go back to previous page and then to order details page*/
         driver.navigate().back();
         driver.findElement(By.className("js-app-header-user-wrap")).findElement(By.tagName("button")).click();
         driver.findElement(By.className("js-app-user-nav")).findElement(By.xpath("//a[@href=\"https://amboli.ge/account/orders/\"]")).click();
@@ -56,26 +57,34 @@ public class SeleniumTest {
 //        child_div.click();
 
         SearchBoxParent.findElement(By.className("js-batteries-search-btn")).click();
+        /*Select Battery search filter*/
         WebElement AmperageFilterParent =  driver.findElement(By.xpath("/html/body/div[1]/main/section/div/div/div[1]/div/div[2]/div[4]"));
         AmperageFilterParent.findElement(By.xpath("//input[@data-filter-value=\"60\"]")).click();
+
+        /*Go To Product page*/
         driver.findElement(By.className("products-grid")).findElement(By.tagName("a")).findElement(By.tagName("img")).click();
 
+        /*Add Product to basket*/
         driver.findElement(By.className("js-product-counter-plus-btn")).click();
         driver.findElement(By.className("js-product-add-to-basket-button")).click();
     }
 
     private static void BuyBasketItems(WebDriver driver) throws InterruptedException {
+        /*Go To Basket page and click checkout*/
         driver.findElement(By.className("basket-btn")).click();
         driver.findElement(By.className("checkout-submit-btn")).click();
+        /*Choose payment method*/
         driver.findElement(By.xpath("//input[(@class=\"js-payment-method-radio\") and (@value=\"Card\")]")).click();
 
         new Actions(driver).scrollToElement(driver.findElement(By.className("js-basket-item"))).perform();
+        /*Choose delivery method*/
         driver.findElement(By.xpath("//input[(@class=\"js-delivery-method-radio\") and (@value=\"Branch\")]")).click();
         sleep(500);
+        /*Choose self pick up branch*/
         driver.findElement(By.xpath("/html/body/div[1]/main/div/div/div[1]/div[3]/div[2]/div[3]/div[1]/div[2]/div")).click();
 
         new Actions(driver).scrollToElement(driver.findElement(By.className("js-basket-item"))).perform();
-
+        /*Click checkout button*/
         driver.findElement(By.className("js-checkout-btn")).click();
     }
 }
