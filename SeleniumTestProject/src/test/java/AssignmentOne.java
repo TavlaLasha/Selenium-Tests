@@ -20,6 +20,7 @@ public class AssignmentOne {
         SearchAndAddProductToBasket(driver);
         sleep(2000);
         BuyBasketItems(driver);
+        sleep(5000);
 
         /*Go back to previous page and then to order details page*/
         driver.navigate().back();
@@ -41,22 +42,20 @@ public class AssignmentOne {
         sleep(100);
         PhoneInput.sendKeys("122353677");
         PasswordInput.sendKeys("1234");
-        driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/button")).click();
+        driver.findElement(By.className("js-auth-signin-btn")).click();
     }
 
     private static void SearchAndAddProductToBasket(WebDriver driver) throws InterruptedException {
-        driver.findElement(By.xpath("/html/body/div[1]/main/div[2]/div/div/div[2]/div/div/div[2]/button")).click();
+        WebElement ParentElement = driver.findElement(By.xpath("//div[@class='advanced-search-wrap']"));
+        ParentElement.findElement(By.xpath("//button[text()='აკუმულატორი']")).click();
 
-        WebElement SearchBoxParent =  driver.findElement(By.xpath("/html/body/div[1]/main/div[2]/div/div/div[2]/div/div/div[2]/div"));
-
-        WebElement VirtualSelect = SearchBoxParent.findElement(By.className("js-batteries-filter"));
+        WebElement VirtualSelect = driver.findElement(By.className("js-batteries-filter"));
         VirtualSelect.click();
 //        sleep(500);
-//        WebElement parent_div = driver.findElement(By.xpath("//div[@class='vscomp-options-container']"));
-//        WebElement child_div = parent_div.findElement(By.xpath(".//div[contains(@data-value, '100')]"));
-//        child_div.click();
+//        WebElement parent_div = VirtualSelect.findElement(By.xpath("//*[contains(@class, 'js-batteries-filter')]/div/div[2]/div/div[2]/div[2]/div/div[@data-value='60']"));
+//        parent_div.click();
 
-        SearchBoxParent.findElement(By.className("js-batteries-search-btn")).click();
+        driver.findElement(By.className("js-batteries-search-btn")).click();
         /*Select Battery search filter*/
         WebElement AmperageFilterParent =  driver.findElement(By.xpath("/html/body/div[1]/main/section/div/div/div[1]/div/div[2]/div[4]"));
         AmperageFilterParent.findElement(By.xpath("//input[@data-filter-value=\"60\"]")).click();
@@ -76,14 +75,17 @@ public class AssignmentOne {
         /*Choose payment method*/
         driver.findElement(By.xpath("//input[(@class=\"js-payment-method-radio\") and (@value=\"Card\")]")).click();
 
-        new Actions(driver).scrollToElement(driver.findElement(By.className("js-basket-item"))).perform();
+        Actions ElementToScrollTo = new Actions(driver).scrollToElement(driver.findElement(By.className("js-basket-item")));
+        ElementToScrollTo.perform();
         /*Choose delivery method*/
         driver.findElement(By.xpath("//input[(@class=\"js-delivery-method-radio\") and (@value=\"Branch\")]")).click();
         sleep(500);
         /*Choose self pick up branch*/
         driver.findElement(By.xpath("/html/body/div[1]/main/div/div/div[1]/div[3]/div[2]/div[3]/div[1]/div[2]/div")).click();
 
-        new Actions(driver).scrollToElement(driver.findElement(By.className("js-basket-item"))).perform();
+        sleep(1000);
+//        new Actions(driver).scrollToElement(driver.findElement(By.className("js-basket-item"))).perform();
+        ElementToScrollTo.perform();
         /*Click checkout button*/
         driver.findElement(By.className("js-checkout-btn")).click();
     }
