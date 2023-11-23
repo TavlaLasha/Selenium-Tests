@@ -1,10 +1,10 @@
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SimpleTest {
+public class FactoryTest {
     private String param = "";
 
-    public SimpleTest(String param) {
+    public FactoryTest(String param) {
         this.param = param;
     }
 
