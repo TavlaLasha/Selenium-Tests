@@ -1,0 +1,1 @@
+{"uuid":"a073f673-f109-4932-9b59-01e71e98706a","name":"FactoryTest","children":["344c0932-3bbd-4116-98a2-da21ac2622f5"],"befores":[{"name":"beforeClass","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1703279592752,"stop":1703279592753}],"afters":[],"start":1703279591764,"stop":1703279592793}

@@ -1,0 +1,5 @@
+# Created at 2023-12-23T01:13:02.210
+Boot Manifest-JAR contains absolute paths in classpath 'F:\Desktop\Lasha\GAU\Test Automation\Selenium-Tests\SeleniumTestProject\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
