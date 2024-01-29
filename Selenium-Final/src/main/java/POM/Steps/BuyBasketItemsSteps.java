@@ -35,7 +35,7 @@ public class BuyBasketItemsSteps {
     }
 
     @Step("Step: Click self pickup delivery {0} branch button with")
-    public BuyBasketItemsSteps clickIncreaseQuantityButton(String branchName) {
+    public BuyBasketItemsSteps clickSelfPickupBranchButton(String branchName) {
         WebElement SelfPickupBranchButton = buyBasketItemsPage.getSelfPickupBranchButton(branchName);
         scrollToElement(SelfPickupBranchButton);
         SelfPickupBranchButton.click();
@@ -44,7 +44,7 @@ public class BuyBasketItemsSteps {
 
     @Step("Step: Click checkout button")
     public BuyBasketItemsSteps clickCheckoutButton() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1500));
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(2000));
         WebElement CheckoutButton = buyBasketItemsPage.getCheckoutButton();
         scrollToElement(CheckoutButton);
         CheckoutButton.click();

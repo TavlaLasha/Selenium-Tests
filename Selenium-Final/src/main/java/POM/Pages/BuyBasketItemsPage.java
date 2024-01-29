@@ -1,6 +1,7 @@
 package POM.Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,7 +29,12 @@ public class BuyBasketItemsPage {
     }
 
     public WebElement getCheckoutButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'js-checkout-btn')]")));
+        try {
+            return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'js-checkout-btn')]")));
+        }
+        catch (StaleElementReferenceException e){
+            return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'js-checkout-btn')]")));
+        }
     }
 
     public WebElement getTBCSubmitButton() {
