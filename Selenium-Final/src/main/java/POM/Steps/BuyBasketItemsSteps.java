@@ -3,6 +3,7 @@ package POM.Steps;
 import POM.Pages.BuyBasketItemsPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -45,9 +46,17 @@ public class BuyBasketItemsSteps {
     @Step("Step: Click checkout button")
     public BuyBasketItemsSteps clickCheckoutButton() {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(2000));
-        WebElement CheckoutButton = buyBasketItemsPage.getCheckoutButton();
-        scrollToElement(CheckoutButton);
-        CheckoutButton.click();
+        try {
+            WebElement CheckoutButton = buyBasketItemsPage.getCheckoutButton();
+            scrollToElement(CheckoutButton);
+            CheckoutButton.click();
+        }
+        catch (StaleElementReferenceException e){
+            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(2000));
+            WebElement CheckoutButton = buyBasketItemsPage.getCheckoutButton();
+            scrollToElement(CheckoutButton);
+            CheckoutButton.click();
+        }
         return this;
     }
 

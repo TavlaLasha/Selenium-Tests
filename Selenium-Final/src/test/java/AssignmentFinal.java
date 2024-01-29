@@ -58,7 +58,7 @@ public class AssignmentFinal {
     @Test(priority = 1, description = "Searching a product")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Searching a product and adding it into a basket")
-    @Story("")
+    @Story("Going to batteries search page and selecting amperage filter of 60 amps. Then adding first found product to basket")
     private void SearchAndAddProductToBasket() {
         searchPageClickSteps.clickBatteriesButton().clickBatteriesSearchButton();
         searchSteps.clickBatteriesAmperageFilterCheckbox("60")
@@ -70,7 +70,7 @@ public class AssignmentFinal {
     @Test(priority = 2, description = "Buying basket products")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Buying products added to basket earlier")
-    @Story("")
+    @Story("Buying products added to basket earlier by going to basket page, then checkout")
     private void BuyBasketItems() {
         buyBasketItemsClickSteps.clickBasketButton().clickGoToCheckoutButton();
         buyBasketItemsSteps.clickTBCCardPaymentMethodRadio()
@@ -88,7 +88,8 @@ public class AssignmentFinal {
         purchaseHistoryPageClickSteps.clickUserActionsWrapButton().clickUserPurchaseHistoryButton();
 
         ((JavascriptExecutor) driver).executeScript("alert('Good Bye!')");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
         driver.quit();
     }
 }
